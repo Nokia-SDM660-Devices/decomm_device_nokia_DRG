@@ -168,6 +168,9 @@ PRODUCT_PACKAGES += \
     libgui_shim \
     libgui_shim_vendor
 
+PRODUCT_PACKAGES += \
+    LMC-Camera
+
 # Cgroup and task_profiles
 PRODUCT_COPY_FILES += \
     system/core/libprocessgroup/profiles/cgroups_28.json:$(TARGET_COPY_OUT_VENDOR)/etc/cgroups.json \
@@ -225,9 +228,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libqti_vndfwk_detect \
     libqti_vndfwk_detect.vendor
-
-# Google Camera
-$(call inherit-product, vendor/nokia/Camera/Camera-vendor.mk)
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -398,6 +398,7 @@ PRODUCT_COPY_FILES += \
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(DEVICE_PATH) \
+    vendor/xiaomi/LMC-Camera \
     hardware/samsung
 
 # Spatial Audio
