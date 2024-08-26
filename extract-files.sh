@@ -59,6 +59,11 @@ fi
 
 function blob_fixup() {
     case "${1}" in
+        # Fix missing symbol _ZN7android8hardware7details17gBnConstructorMapE
+        vendor/lib64/libvendor.goodix.hardware.fingerprint@1.0.so | vendor/lib64/libvendor.goodix.hardware.fingerprintextension@1.0.so)
+            "${PATCHELF_0_17_2}" --remove-needed "libhidltransport.so" "${2}"
+            "${PATCHELF_0_17_2}" --replace-needed "libhidlbase.so" "libhidlbase-v32.so" "${2}"
+            ;;
         system_ext/lib64/libdpmframework.so)
             for  LIBCUTILS_SHIM in $(grep -L "libcutils_shim.so" "${2}"); do
                 "${PATCHELF}" --add-needed "libcutils_shim.so" "${2}"
